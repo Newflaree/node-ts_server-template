@@ -3,7 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Epress
 const express_1 = __importDefault(require("express"));
+// Utils
+const utils_1 = require("../utils");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -14,7 +17,8 @@ class Server {
     }
     listen() {
         this.app.listen(this.port, () => {
-            console.log(`Listening on port: ${this.port}`);
+            console.clear();
+            utils_1.logger.listenServerLogger(this.port);
         });
     }
 }

@@ -1,5 +1,9 @@
+// Epress
 import  express, { Application } from 'express';
+// Cors
 import cors from 'cors';
+// Utils
+import { logger } from '../utils';
 
 
 class Server {
@@ -19,7 +23,7 @@ class Server {
   listen() {
     this.app.listen( this.port, () => {
       console.clear();
-      console.log( `Listening on port: ${ this.port }` );
+      logger.listenServerLogger( this.port );
     });
   }
 }
