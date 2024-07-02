@@ -11,34 +11,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 // Utils
 const utils_1 = require("../../../utils");
-// Modules
-const modules_1 = require("../modules");
-/**
- * Handler description
- *
- * PATH: /api/...
- * AUTH-REQUIRED: false
- * ADMIN-REQUIRED: false
- *
- * @param { Object } req - The HTTP request object.
- * @param { Object } res - The HTTP response object.
- * @returns { void }
- */
-const sendEmailController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const sendEmailService = (transporter, mailOptions) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { ok, statusCode, message } = yield (0, modules_1.sendEmailModule)(req);
-        res.status(statusCode).json({
-            ok,
-            message
-        });
+        yield transporter.sendMail(mailOptions);
+        return {
+            statusCode: utils_1.statusCodes.SUCCESS,
+            ok: true,
+            message: utils_1.messages.SEND_EMAIL
+        };
     }
     catch (error) {
-        utils_1.logger.consoleErrorsHandler(error, 'sendEmailController');
-        res.status(utils_1.statusCodes.SERVER_ERROR).json({
+        utils_1.logger.consoleErrorsHandler(error, 'sendEmailService');
+        return {
+            statusCode: utils_1.statusCodes.BAD_REQUEST,
             ok: false,
-            message: utils_1.messages.SERVER_ERROR
-        });
+            message: utils_1.messages.SEND_EMAIL_ERROR
+        };
     }
 });
-exports.default = sendEmailController;
-//# sourceMappingURL=sendEmailController.js.map
+exports.default = sendEmailService;
+//# sourceMappingURL=sendEmailService.js.map

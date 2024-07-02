@@ -9,6 +9,8 @@ import {
   messages,
   statusCodes
 } from '../../../utils';
+// Modules
+import { sendEmailModule } from '../modules';
 
 
 /**
@@ -27,12 +29,16 @@ const sendEmailController = async (
   res: Response
 ): Promise<any> => {
   try {
+     const {
+      ok,
+      statusCode,
+      message
+    } = await sendEmailModule( req );
 
-    res.status( statusCodes.SUCCESS ).json({
-      ok: true,
-      message: 'sendEmailController'
+    res.status( statusCode ).json({
+      ok,
+      message
     });
-  
   } catch ( error ) {
     logger.consoleErrorsHandler( error, 'sendEmailController' );
 
