@@ -14,7 +14,7 @@ const utils_1 = require("../utils");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = '3005';
+        this.port = process.env.PORT || '3005';
         this.apiPaths = {
             email: '/api/email'
         };

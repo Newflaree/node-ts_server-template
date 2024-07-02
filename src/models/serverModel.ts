@@ -17,7 +17,7 @@ class Server {
  
   constructor() {
     this.app = express();
-    this.port = '3005';
+    this.port = process.env.PORT ||  '3005';
     this.apiPaths = {
       email: '/api/email'
     };
