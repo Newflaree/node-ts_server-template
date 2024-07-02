@@ -1,3 +1,6 @@
 "use strict";
-console.log('Hola');
+Object.defineProperty(exports, "__esModule", { value: true });
+const models_1 = require("./models");
+const server = new models_1.Server();
+server.listen();
 //# sourceMappingURL=app.js.map
