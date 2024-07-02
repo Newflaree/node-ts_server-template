@@ -17,8 +17,22 @@ class Server {
     this.apiPaths = {
       email: '/api/email'
     };
+
+    // Init middlewares
+    this.middlewares();
+    // Init Routes
+    this.routes();
   }
 
+  middlewares() {
+    this.app.use( cors() );
+    this.app.use( express.json() );
+    this.app.use( express.static( 'public' ) );
+  }
+
+  routes() {
+    console.log( 'Routes' );
+  }
 
   listen() {
     this.app.listen( this.port, () => {
