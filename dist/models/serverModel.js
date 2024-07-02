@@ -33,7 +33,6 @@ class Server {
     }
     listen() {
         this.app.listen(this.port, () => {
-            console.clear();
             utils_1.logger.listenServerLogger(this.port);
         });
     }

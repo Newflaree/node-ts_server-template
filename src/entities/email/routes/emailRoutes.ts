@@ -4,6 +4,8 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 // Controllers
 import { sendEmailController } from '../controllers';
+// Middlewares
+import { validateFields } from '../../../middlewares';
 
 
 const router: Router = Router();
@@ -16,7 +18,8 @@ router.post(
     check( 'lastName', 'El apellido es necesario' ).not().isEmpty(),
     check( 'emailAddress', 'El correo electrónico es necesario' ).isEmail(),
     check( 'subject', 'El asunto es necesario' ).not().isEmpty(),
-    check( 'message', 'El mensaje es necesario' ).not().isEmpty()
+    check( 'message', 'El mensaje es necesario' ).not().isEmpty(),
+    validateFields
     // TODO: Validate fields middleware
   ],
   sendEmailController
