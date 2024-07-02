@@ -2,6 +2,8 @@
 import  express, { Application } from 'express';
 // Cors
 import cors from 'cors';
+// Interfaces
+import { ApiPaths } from '../interfaces';
 // Utils
 import { logger } from '../utils';
 
@@ -9,7 +11,7 @@ import { logger } from '../utils';
 class Server {
   public app: Application;
   public port: string;
-  public apiPaths: any;
+  public apiPaths: ApiPaths;
  
   constructor() {
     this.app = express();
@@ -31,7 +33,6 @@ class Server {
   }
 
   routes() {
-    console.log( 'Routes' );
   }
 
   listen() {
