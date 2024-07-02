@@ -4,6 +4,8 @@ import  express, { Application } from 'express';
 import cors from 'cors';
 // Interfaces
 import { ApiPaths } from '../interfaces';
+// Routes
+import { emailRoutes } from '../entities/routes';
 // Utils
 import { logger } from '../utils';
 
@@ -33,6 +35,7 @@ class Server {
   }
 
   routes() {
+    this.app.use( this.apiPaths.email, emailRoutes );
   }
 
   listen() {

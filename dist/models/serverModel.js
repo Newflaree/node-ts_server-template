@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // Cors
 const cors_1 = __importDefault(require("cors"));
+// Routes
+const routes_1 = require("../entities/routes");
 // Utils
 const utils_1 = require("../utils");
 class Server {
@@ -27,7 +29,7 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
-        console.log('Routes');
+        this.app.use(this.apiPaths.email, routes_1.emailRoutes);
     }
     listen() {
         this.app.listen(this.port, () => {
